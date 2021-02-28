@@ -4,7 +4,7 @@
         <!-- 页面meta -->
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>111传智健康</title>
+        <title>传智健康</title>
         <meta name="description" content="传智健康">
         <meta name="keywords" content="传智健康">
         <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
@@ -36,7 +36,7 @@
                         <el-table-column prop="name" label="项目名称" align="center"></el-table-column>
                         <el-table-column label="适用性别" align="center">
                             <template slot-scope="scope">
-                                <span v-if>{{ scope.row.sex == '0' ? '不限' : scope.row.sex == '2' ? '女' : scope.row.sex == '1' ? '男' : '无'}}</span>
+                                <span>{{ scope.row.sex == '0' ? '不限' : scope.row.sex == '2' ? '女' : scope.row.sex == '1' ? '男' : '无'}}</span>
                             </template>
                         </el-table-column>
                         <el-table-column prop="age" label="适用年龄" align="center"></el-table-column>

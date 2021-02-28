@@ -31,4 +31,10 @@
         delete from t_checkitem where id=#{id}
     </delete>
 
+
+
+    <select id="findAll" resultType="checkitem">
+        select * from t_checkitem;
+    </select>
+
 </mapper>

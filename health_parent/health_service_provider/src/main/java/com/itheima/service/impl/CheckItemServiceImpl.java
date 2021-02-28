@@ -24,7 +24,6 @@ public class CheckItemServiceImpl implements CheckItemService {
         checkItemDao.add(checkItem);
     }
 
-
     public PageResult pageQuery(QueryPageBean queryPageBean) {
         Integer currentPage = queryPageBean.getCurrentPage();
         Integer pageSize = queryPageBean.getPageSize();
@@ -54,5 +53,9 @@ public class CheckItemServiceImpl implements CheckItemService {
         }else {
             checkItemDao.deleteById(id);
         }
+    }
+
+    public List<CheckItem> findAll() {
+        return checkItemDao.findAll();
     }
 }

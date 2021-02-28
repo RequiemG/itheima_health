@@ -578,5 +578,5 @@ label input[type="radio"]:checked {
 }
 .checkScrol{
 	height: 277px;
-	overflow-y:scroll; ;
+	overflow-y:scroll;
 }

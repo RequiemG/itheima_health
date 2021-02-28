@@ -76,4 +76,18 @@ public class CheckGroup implements Serializable {
     public void setCheckItems(List<CheckItem> checkItems) {
         this.checkItems = checkItems;
     }
+
+
+    public String toString() {
+        return "CheckGroup{" +
+                "id=" + id +
+                ", code='" + code + '\'' +
+                ", name='" + name + '\'' +
+                ", helpCode='" + helpCode + '\'' +
+                ", sex='" + sex + '\'' +
+                ", remark='" + remark + '\'' +
+                ", attention='" + attention + '\'' +
+                ", checkItems=" + checkItems +
+                '}';
+    }
 }

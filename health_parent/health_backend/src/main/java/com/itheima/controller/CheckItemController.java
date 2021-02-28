@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/checkitem")
 public class CheckItemController {
@@ -33,8 +35,7 @@ public class CheckItemController {
 
     @RequestMapping("/findPage")
     public PageResult findPage(@RequestBody QueryPageBean queryPageBean){
-        PageResult pageResult = checkItemService.pageQuery(queryPageBean);
-        return pageResult;
+        return checkItemService.pageQuery(queryPageBean);
     }
 
     @RequestMapping("/findById")
@@ -72,4 +73,13 @@ public class CheckItemController {
         return new Result(true,MessageConstant.DELETE_CHECKITEM_SUCCESS);
     }
 
+    @RequestMapping("/findAll")
+    public Result findAll(){
+        // id code name remark
+        List<CheckItem> checkItemList = checkItemService.findAll();
+        if(checkItemList != null && checkItemList.size()>0 ){
+            return new Result(true,MessageConstant.QUERY_CHECKITEM_SUCCESS,checkItemList);
+        }
+        return new Result(false,MessageConstant.QUERY_CHECKITEM_FAIL,checkItemList);
+    };
 }

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itheima.dao.CheckGroupDao">
+
+    <insert id="setCheckGroupAndCheckItem" parameterType="hashmap">
+        insert into t_checkgroup_checkitem(checkgroup_id, checkitem_id)
+        values(#{checkgroup_id},#{checkitem_id})
+    </insert>
+
+    <insert id="add" parameterType="checkgroup">
+        insert into t_checkgroup(code,name,helpCode,sex,remark,attention)
+        values(#{code},#{name},#{helpCode},#{sex},#{remark},#{attention})
+    </insert>
+
+    <select id="getGroupId" parameterType="checkgroup" resultType="int">
+        select id
+        from t_checkgroup where code=#{code} and name=#{name};
+    </select>
+
+
+    <select id="pageQuery" parameterType="string" resultType="checkgroup">
+        select * from t_checkgroup
+        <if test="value != null and value.length>0">
+            where code=#{value} or name=#{value} or helpCode=#{value}
+        </if>
+    </select>
+
+
+
+    <!--编辑操作-->
+    <select id="findById" parameterType="int" resultType="checkgroup">
+        select * from t_checkgroup where id=#{id}
+    </select>
+
+    <select id="findCheckItemIdsByCheckGroupId" parameterType="int" resultType="int">
+        select checkitem_id
+        from t_checkgroup_checkitem where checkgroup_id=#{id};
+    </select>
+
+    <delete id="deleteAssociation" parameterType="int">
+        /*删除关联表中原有的关系*/
+        delete from t_checkgroup_checkitem where checkgroup_id=#{id}
+    </delete>
+
+    <update id="edit" parameterType="checkgroup">
+        update t_checkgroup set
+        code=#{code}, name=#{name}, helpCode=#{helpCode}, sex=#{sex}, remark=#{remark}, attention=#{attention}
+        where id=#{id}
+    </update>
+
+
+
+    <delete id="deleteById" parameterType="int">
+        delete from t_checkgroup where id=#{id}
+    </delete>
+
+
+</mapper>

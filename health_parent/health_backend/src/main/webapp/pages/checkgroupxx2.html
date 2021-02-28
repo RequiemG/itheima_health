@@ -179,7 +179,8 @@
                 <el-dialog title="编辑检查组" :visible.sync="dialogFormVisible4Edit">
                     <el-tabs v-model="activeName" type="card">
                         <el-tab-pane label="基本信息" name="first">
-                            <el-form ref="dataEditForm" :model="formData" :rules="rules" label-position="right" label-width="100px">
+                            <el-form ref="dataEditForm" :model="formData" :rules="rules" label-position="right"
+                                     label-width="100px">
                                 <el-row>
                                     <el-col :span="12">
                                         <el-form-item label="编码" prop="code">
@@ -225,28 +226,25 @@
                             </el-form>
                         </el-tab-pane>
                         <el-tab-pane label="检查项信息" name="second">
-                            <div class="checkScrol">
-                                <table class="datatable">
-                                    <thead>
-                                    <tr>
-                                        <th>选择</th>
-                                        <th>项目编码</th>
-                                        <th>项目名称</th>
-                                        <th>项目说明</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr v-for="c in tableData">
-                                        <td>
-                                            <input :id="c.id" v-model="checkItemIds" type="checkbox" :value="c.id">
-                                        </td>
-                                        <td><label :for="c.id">{{c.code}}</label></td>
-                                        <td><label :for="c.id">{{c.name}}</label></td>
-                                        <td><label :for="c.id">{{c.remark}}</label></td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                            <template>
+                                <div>
+                                    <!--<el-table style="width: 100%" height="300px">
+                                        <el-table-column width="50" prop="id">
+                                            <template slot-scope="scope">
+                                                <el-checkbox v-model="checkItemIds">{{c.id}}</el-checkbox>
+                                            </template>
+                                        </el-table-column>
+                                        <el-table-column prop="code" label="项目编码" width="180" align="center"></el-table-column>
+                                        <el-table-column prop="name" label="项目名称" width="180" align="center"></el-table-column>
+                                        <el-table-column prop="remark" label="项目说明" align="center"></el-table-column>
+                                    </el-table>-->
+                                    <el-table current-row-key="id" :data="tableData">
+                                        <el-table-column prop="code" label="日期" width="180" align="center"></el-table-column>
+                                        <el-table-column prop="name" label="姓名" width="180" align="center"></el-table-column>
+                                        <el-table-column prop="remark" label="地址" align="center"></el-table-column>
+                                    </el-table>
+                                </div>
+                            </template>
                         </el-tab-pane>
                     </el-tabs>
                     <div slot="footer" class="dialog-footer">
@@ -275,7 +273,10 @@
                 code: [{required: true, message: '编码为必填项', trigger: 'blur'}],
                 name: [{required: true, message: '名称为必填项', trigger: 'blur'}]
             },
-            dataList: [],//列表数据
+            dataList: [],//列表数据//列表数据
+
+            testData: [{age: "0-100", attention: "无", code: "0001", id: 28, name: "身高", price: 5, remark: "身高", sex: "0"},
+                        {age: "0-100", attention: "无", code: "0002", id: 29, name: "体重", price: 5, remark: "体重", sex: "0"}],
             formData: {},//表单数据
             tableData: [],//新增和编辑表单中对应的检查项列表数据
             checkItemIds: [],//新增和编辑表单中检查项对应的复选框，基于双向绑定可以进行回显和数据提交
@@ -357,7 +358,7 @@
                     //为VUE对象的模型数据赋值，基于双向数据绑定展示到页面
                     this.dataList = res.data.rows;//当前页展示的数据集合
                     this.pagination.total = res.data.total;//总数据量
-                    if (res.data.total === 0) {
+                    if (res.data.total == 0) {
                         this.$message.error("查无此数据")
                     }
                     /*console.log("后端返回的查询总数：",res.data.total)
@@ -379,7 +380,6 @@
                     if (res.data.flag) {
                         //查询检查项数据成功
                         this.tableData = res.data.data;
-                        // console.log(this.tableData)
                     } else {
                         //查询检查项数据失败
                         this.$message.error(res.data.message);

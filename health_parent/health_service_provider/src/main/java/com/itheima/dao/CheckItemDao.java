@@ -4,6 +4,8 @@ import com.github.pagehelper.Page;
 import com.itheima.entity.QueryPageBean;
 import com.itheima.pojo.CheckItem;
 
+import java.util.List;
+
 public interface CheckItemDao {
     public void add(CheckItem checkItem);
     public Page<CheckItem> findPage(String queryString);
@@ -11,4 +13,5 @@ public interface CheckItemDao {
     public void edit(CheckItem checkItem);
     public void deleteById(int id);
     public long isRelevance(int id);
+    public List<CheckItem> findAll();
 }

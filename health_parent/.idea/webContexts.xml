@@ -3,6 +3,8 @@
   <component name="WebContextManager">
     <option name="state">
       <map>
+        <entry key="file://$PROJECT_DIR$/health_backend/src/main/webapp/pages/checkgroup.html" value="file://$PROJECT_DIR$/health_backend/src/main/webapp/pages" />
+        <entry key="file://$PROJECT_DIR$/health_backend/src/main/webapp/pages/checkgroupxx2.html" value="file://$PROJECT_DIR$/health_backend/src/main/webapp/pages" />
         <entry key="file://$PROJECT_DIR$/health_backend/src/main/webapp/pages/checkitem.html" value="file://$PROJECT_DIR$/health_backend/src/main/webapp/pages" />
       </map>
     </option>
