@@ -92,5 +92,9 @@ public class CheckGroupServiceImpl implements CheckGroupService {
         checkGroupDao.deleteById(id);
     }
 
+    public List<CheckGroup> findAll(){
+        return checkGroupDao.findAll();
+    };
+
 
 }

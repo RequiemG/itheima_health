@@ -1,7 +1,6 @@
 package com.itheima.dao;
 
 import com.github.pagehelper.Page;
-import com.itheima.entity.QueryPageBean;
 import com.itheima.pojo.CheckItem;
 
 import java.util.List;

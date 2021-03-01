@@ -1,0 +1,15 @@
+com/itheima/constant/MessageConstant.class
+com/itheima/pojo/Member.class
+com/itheima/pojo/Setmeal.class
+com/itheima/pojo/Menu.class
+com/itheima/pojo/CheckGroup.class
+com/itheima/entity/QueryPageBean.class
+com/itheima/pojo/CheckItem.class
+com/itheima/pojo/Permission.class
+com/itheima/pojo/User.class
+com/itheima/pojo/OrderSetting.class
+com/itheima/entity/Result.class
+com/itheima/pojo/Role.class
+com/itheima/entity/PageResult.class
+com/itheima/pojo/Order.class
+com/itheima/util/AliyunUtil.class

@@ -30,7 +30,7 @@ public class CheckGroupController {
             return new Result(true, MessageConstant.ADD_CHECKGROUP_SUCCESS);
         }catch (Exception e){
             e.printStackTrace();
-            return new Result(false, MessageConstant.ADD_CHECKITEM_FAIL);
+            return new Result(false, MessageConstant.ADD_CHECKGROUP_FAIL);
         }
     };
 
@@ -85,6 +85,17 @@ public class CheckGroupController {
         }catch (Exception e){
             e.printStackTrace();
             return new Result(false, MessageConstant.DELETE_CHECKGROUP_FAIL);
+        }
+    }
+
+
+    @RequestMapping("/findAll")
+    public Result findAll(){
+        List<CheckGroup> groupList = checkGroupService.findAll();
+        if (groupList!=null && groupList.size()>0){
+            return new Result(true,MessageConstant.QUERY_CHECKGROUP_SUCCESS,groupList);
+        }else {
+            return new Result(false,MessageConstant.QUERY_CHECKGROUP_FAIL);
         }
     }
 
