@@ -17,7 +17,7 @@
       <module name="health_backend" target="1.8" />
       <module name="health_common" target="1.8" />
       <module name="health_interface" target="1.8" />
-      <module name="health_jobs" target="1.5" />
+      <module name="health_jobs" target="1.8" />
       <module name="health_parent" target="1.8" />
       <module name="health_service_provider" target="1.8" />
     </bytecodeTargetLevel>
