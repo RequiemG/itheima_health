@@ -468,7 +468,7 @@
                             axios.get("/setmeal/findCheckGroupIdsBySetMeal.do?id="+row.id).then((res)=>{
                                 if (res.data.flag){
                                     this.checkGroupIds =res.data.data;
-                                    console.log(res.data.data)
+                                    // console.log(res.data.data)
                                 }else {
                                     this.$message.error(res.data.message);
                                 }

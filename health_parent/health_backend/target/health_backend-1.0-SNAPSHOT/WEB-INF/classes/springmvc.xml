@@ -76,4 +76,5 @@
             </map>
         </property>
     </bean>-->
+    <import resource="spring-redis.xml"/>
 </beans>

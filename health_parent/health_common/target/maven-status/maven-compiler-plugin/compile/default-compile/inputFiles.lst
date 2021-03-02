@@ -12,4 +12,5 @@
 /home/zxj/_project/JavaProject/itheima/medical/health_parent/health_common/src/main/java/com/itheima/entity/QueryPageBean.java
 /home/zxj/_project/JavaProject/itheima/medical/health_parent/health_common/src/main/java/com/itheima/pojo/User.java
 /home/zxj/_project/JavaProject/itheima/medical/health_parent/health_common/src/main/java/com/itheima/pojo/Permission.java
+/home/zxj/_project/JavaProject/itheima/medical/health_parent/health_common/src/main/java/com/itheima/constant/RedisConstant.java
 /home/zxj/_project/JavaProject/itheima/medical/health_parent/health_common/src/main/java/com/itheima/pojo/Order.java

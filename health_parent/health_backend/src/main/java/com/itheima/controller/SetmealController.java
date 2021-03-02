@@ -2,17 +2,20 @@ package com.itheima.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.itheima.constant.MessageConstant;
+import com.itheima.constant.RedisConstant;
 import com.itheima.entity.PageResult;
 import com.itheima.entity.QueryPageBean;
 import com.itheima.entity.Result;
 import com.itheima.pojo.Setmeal;
 import com.itheima.service.SetmealService;
 import com.itheima.util.AliyunUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+import redis.clients.jedis.JedisPool;
 
 import java.io.*;
 import java.util.List;
@@ -23,6 +26,9 @@ import java.util.UUID;
 @RequestMapping("/setmeal")
 public class SetmealController {
 
+
+    @Autowired
+    private JedisPool jedisPool;
 
     @Reference
     private SetmealService setmealService;
@@ -54,9 +60,9 @@ public class SetmealController {
             String uuid = UUID.randomUUID().toString();
             // 将uuid名称和文件后缀拼接
             String fileName = uuid+substring;
-
             // 上传图片
             AliyunUtil.upload2AliYun(imgFile.getBytes(),fileName);
+            jedisPool.getResource().sadd(RedisConstant.SETMEAL_PIC_RESOURCES,fileName);
 
             // 返回信息，因为数据库需要文件的地址，所以数据也要返回
             return new Result(true, MessageConstant.PIC_UPLOAD_SUCCESS,fileName);

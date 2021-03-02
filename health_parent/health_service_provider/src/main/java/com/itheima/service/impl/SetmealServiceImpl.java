@@ -3,6 +3,7 @@ package com.itheima.service.impl;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import com.itheima.constant.RedisConstant;
 import com.itheima.dao.SetmealDao;
 import com.itheima.entity.PageResult;
 import com.itheima.entity.QueryPageBean;
@@ -10,6 +11,7 @@ import com.itheima.pojo.Setmeal;
 import com.itheima.service.SetmealService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
+import redis.clients.jedis.JedisPool;
 
 import java.util.HashMap;
 import java.util.List;
@@ -21,6 +23,9 @@ public class SetmealServiceImpl implements SetmealService{
     @Autowired
     private SetmealDao setmealDao;
 
+    @Autowired
+    private JedisPool jedisPool;
+
     @Override
     public void add(Setmeal setmeal, Integer[] checkGroupIds) {
         // t_setmeal表，添加套餐基本信息
@@ -28,7 +33,11 @@ public class SetmealServiceImpl implements SetmealService{
         // 得到套餐的id值
         int mealId = getMealId(setmeal);
         // 关联边，设置关联
-        setMealAndCheckGroup(mealId,checkGroupIds);
+        this.setMealAndCheckGroup(mealId,checkGroupIds);
+        // 保存图片名称
+        String fileName = setmeal.getImg();
+        jedisPool.getResource().sadd(RedisConstant.SETMEAL_PIC_DB_RESOURCES,fileName);
+
     }
 
     public void setMealAndCheckGroup(Integer mealId, Integer[] checkGroupIds){
