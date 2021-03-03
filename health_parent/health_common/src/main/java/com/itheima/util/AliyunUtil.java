@@ -2,8 +2,6 @@ package com.itheima.util;
 
 import com.aliyun.oss.OSS;
 import com.aliyun.oss.OSSClientBuilder;
-import com.aliyun.oss.model.PutObjectRequest;
-
 
 import java.io.ByteArrayInputStream;
 import java.io.File;

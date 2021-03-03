@@ -37,7 +37,6 @@ public class SetmealServiceImpl implements SetmealService{
         // 保存图片名称
         String fileName = setmeal.getImg();
         jedisPool.getResource().sadd(RedisConstant.SETMEAL_PIC_DB_RESOURCES,fileName);
-
     }
 
     public void setMealAndCheckGroup(Integer mealId, Integer[] checkGroupIds){
@@ -97,7 +96,4 @@ public class SetmealServiceImpl implements SetmealService{
         deleteAssociation(id);
         setmealDao.deleteById(id);
     }
-
-
-
 }

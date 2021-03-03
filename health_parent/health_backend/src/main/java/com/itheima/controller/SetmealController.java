@@ -63,7 +63,6 @@ public class SetmealController {
             // 上传图片
             AliyunUtil.upload2AliYun(imgFile.getBytes(),fileName);
             jedisPool.getResource().sadd(RedisConstant.SETMEAL_PIC_RESOURCES,fileName);
-
             // 返回信息，因为数据库需要文件的地址，所以数据也要返回
             return new Result(true, MessageConstant.PIC_UPLOAD_SUCCESS,fileName);
         }catch (Exception e){
@@ -111,6 +110,14 @@ public class SetmealController {
             return new Result(false, MessageConstant.EDIT_SETMEAL_FAIL);
         }
     }
+
+
+
+
+
+
+
+
 
     @RequestMapping("/delete")
     public Result delete(int id){
