@@ -108,7 +108,6 @@
                                                         class="orderbtn">设置
                                                 </button>
                                             </template>
-											
                                         </div>
                                     </template>
                                 </li>
@@ -174,6 +173,7 @@
                 },
 				//上传之前进行文件格式校验
                 beforeUpload(file){
+                    console.log(file.type)
                     const isXLS = file.type === 'application/vnd.ms-excel';
                     if(isXLS){
                         return true;
@@ -182,12 +182,18 @@
                     if (isXLSX) {
                         return true;
                     }
+                    const isWPSXLSX = file.type === 'application/wps-office.xlsx';
+                    if (isWPSXLSX) {
+                        return true;
+                    }
+
                     this.$message.error('上传文件只能是xls或者xlsx格式!');
                     return false;
                 },
 				//下载模板文件
                 downloadTemplate(){
-                    window.location.href="../../template/ordersetting_template.xlsx";
+                    console.log("xiazia")
+                    window.location.href="../template/ordersetting_template.xlsx";
                 },
 				//上传成功提示
                 handleSuccess(response, file) {
@@ -199,7 +205,7 @@
                     }else{
                         this.$message.error(response.message);
                     }
-                    console.log(response, file, fileList);
+                    // console.log(response, file);
                 },
                 //初始化当前页要展示的日期
 				initData: function (cur) {

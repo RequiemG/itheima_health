@@ -2,6 +2,7 @@ com/itheima/constant/MessageConstant.class
 com/itheima/pojo/Member.class
 com/itheima/pojo/Setmeal.class
 com/itheima/constant/RedisConstant.class
+com/itheima/util/POIUtil.class
 com/itheima/pojo/Menu.class
 com/itheima/pojo/CheckGroup.class
 com/itheima/entity/QueryPageBean.class
