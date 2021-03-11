@@ -20,4 +20,5 @@
     <dubbo:registry address="zookeeper://159.75.85.68:2181"/>
     <!--批量扫描，发布服务-->
     <dubbo:annotation package="com.itheima.service"/>
+    <bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
 </beans>

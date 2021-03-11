@@ -15,6 +15,7 @@ import redis.clients.jedis.JedisPool;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service(interfaceClass = SetmealService.class)
 @Transactional
@@ -96,4 +97,19 @@ public class SetmealServiceImpl implements SetmealService{
         deleteAssociation(id);
         setmealDao.deleteById(id);
     }
+
+    @Override
+    public List<Setmeal> findAll() {
+        return setmealDao.findAll();
+    }
+
+    @Override
+    public Setmeal findById4Mobile(int id) {
+        return setmealDao.findById4Mobile(id);
+    }
+
+    public List<Map<String, Object>> findSetmealCount() {
+        return setmealDao.findSetmealCount();
+    }
 }
+

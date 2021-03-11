@@ -37,4 +37,12 @@
         select * from t_checkitem;
     </select>
 
+
+
+    <!--套餐查询-->
+    <select id="findCheckItemById" parameterType="int" resultType="checkitem">
+        /*根据检查组id查询检查项*/
+        select * from t_checkitem where id in (select checkitem_id from t_checkgroup_checkitem where checkgroup_id=#{id})
+    </select>
+
 </mapper>

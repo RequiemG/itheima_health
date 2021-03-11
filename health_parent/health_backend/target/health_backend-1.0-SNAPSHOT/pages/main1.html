@@ -3,15 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <title>健康项目</title>
+<!--    <meta name="description" content="传智健康">-->
+<!--    <meta name="keywords" content="传智健康">-->
+<!--    <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">-->
     <!-- 引入ElementUI样式 -->
     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
+
     <!-- 引入ElementUI组件库 -->
     <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <script src="../js/axios-0.18.0.js"></script>
 
 
-
-    <style>
+    <style type="text/css">
         .el-header, .el-footer {
             padding: 0;
         }
@@ -119,14 +123,16 @@
                         <el-dropdown class="avatar-container right-menu-item" trigger="click">
                             <div class="avatar-wrapper">
                                 <img src="../img/user2-160x160.jpg" class="user-avatar">
-                                Jay.Liu
+                                {{username}}
                             </div>
                             <el-dropdown-menu slot="dropdown">
                                 <el-dropdown-item divided>
                                     <span style="display:block;">修改密码</span>
                                 </el-dropdown-item>
                                 <el-dropdown-item divided>
-                                    <span style="display:block;">退出</span>
+                                    <span style="display:block;">
+                                        <a href="/logout.do">退出</a>
+                                        </span>
                                 </el-dropdown-item>
                             </el-dropdown-menu>
                         </el-dropdown>
@@ -170,6 +176,7 @@
     new Vue({
         el: '#app',
         data:{
+            username:'',
             menuList:[
                 {
                     "path": "1",
@@ -258,13 +265,33 @@
                     "children":[//是否有子菜单，若没有，则为[]
                         {
                             "path": "/5-1",
-                            "title": "工作量统计",
-                            "linkUrl":"all-medical-list.html",
+                            "title": "会员数量统计",
+                            "linkUrl":"report_member.html",
+                            "children":[]
+                        },
+                        {
+                            "path": "/5-2",
+                            "title": "套餐占比",
+                            "linkUrl":"report_setmeal.html",
+                            "children":[]
+                        },
+                        {
+                            "path": "/5-3",
+                            "title": "运营数据",
+                            "linkUrl":"report_business.html",
                             "children":[]
                         }
                     ]
                 }
             ]
+        },
+        created(){
+            // 发送请求，得到用户名，用于展示
+            axios.get("/user/getUsername.do").then((res)=>{
+                if (res.data.flag){
+                    this.username = res.data.data;
+                }
+            })
         }
     });
 

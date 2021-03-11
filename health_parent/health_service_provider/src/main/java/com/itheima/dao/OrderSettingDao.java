@@ -12,4 +12,7 @@ public interface OrderSettingDao {
     public void editNumberByOrderDate(OrderSetting orderSetting);
     public List<OrderSetting> getOrderSettingByMonth(Map map);
     public void editNumberByDate(OrderSetting orderSetting);
+
+    public OrderSetting findOrderByDate(Date orderDate);
+    public void editReservationsByOrderDate(OrderSetting orderSetting);
 }

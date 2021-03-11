@@ -59,4 +59,43 @@
         delete from t_setmeal where id=#{id}
     </delete>
 
+
+
+
+    <select id="findAll" resultType="setmeal">
+        select * from t_setmeal
+    </select>
+
+    
+    
+    <!--根据套餐ID查询套餐详情（包含套餐基本信息，检查组信息，检查项信息-->
+    <resultMap id="baseResultMap" type="setmeal">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="code" property="code"/>
+        <result column="helpCode" property="helpCode"/>
+        <result column="sex" property="sex"/>
+        <result column="age" property="age"/>
+        <result column="price" property="price"/>
+        <result column="remark" property="remark"/>
+        <result column="attention" property="attention"/>
+        <result column="img" property="img"/>
+    </resultMap>
+    
+    <resultMap id="findByIdResultMap" type="setmeal" extends="baseResultMap">
+        <collection property="checkGroups" ofType="checkgroup" column="id" select="com.itheima.dao.CheckGroupDao.findCheckGroupById">
+            <!--property应该是setmeal中的一个属性-->
+            <!--多对多映射-->
+        </collection>
+    </resultMap>
+
+    <select id="findById4Mobile" parameterType="int" resultMap="findByIdResultMap">
+        select * from t_setmeal where id=#{id}
+    </select>
+
+
+    <select id="findSetmealCount" resultType="map">
+        select s.name,count(*) as value from t_order as o, t_setmeal as s where o.setmeal_id = s.id GROUP BY s.name
+    </select>
+
 </mapper>

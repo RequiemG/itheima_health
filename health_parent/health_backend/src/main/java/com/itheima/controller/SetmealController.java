@@ -123,7 +123,7 @@ public class SetmealController {
     public Result delete(int id){
         try {
             setmealService.deleteById(id);
-            return new Result(true,MessageConstant.DELETE_MEMBER_SUCCESS);
+            return new Result(true,MessageConstant.DELETE_SETMEAL_SUCCESS);
         }
         catch (Exception e){
             return new Result(false, MessageConstant.DELETE_SETMEAL_FAIL);

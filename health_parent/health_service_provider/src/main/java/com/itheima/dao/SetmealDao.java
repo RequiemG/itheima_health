@@ -16,4 +16,8 @@ public interface SetmealDao {
     public void edit(Setmeal setmeal);
     public void deleteAssociation(int id);
     public void deleteById(int id);
+    public List<Setmeal> findAll();
+    public Setmeal findById4Mobile(int id);
+
+    public List<Map<String, Object>> findSetmealCount();
 }

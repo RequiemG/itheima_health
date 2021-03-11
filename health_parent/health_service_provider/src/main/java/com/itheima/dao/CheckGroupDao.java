@@ -17,4 +17,5 @@ public interface CheckGroupDao {
     public void edit(CheckGroup checkGroup);
     public void deleteAssociation(int id);
     public List<CheckGroup> findAll();
+    public List<CheckGroup> findCheckGroupById();
 }

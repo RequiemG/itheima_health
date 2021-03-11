@@ -13,4 +13,5 @@ public interface CheckItemDao {
     public void deleteById(int id);
     public long isRelevance(int id);
     public List<CheckItem> findAll();
+    public List<CheckItem> findCheckItemById();
 }

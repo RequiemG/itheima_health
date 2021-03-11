@@ -1,4 +1,7 @@
 com/itheima/controller/OrderSettingController.class
+com/itheima/service/SpringSecurityUserService.class
 com/itheima/controller/CheckItemController.class
 com/itheima/controller/CheckGroupController.class
 com/itheima/controller/SetmealController.class
+com/itheima/controller/ReportController.class
+com/itheima/controller/UserController.class
