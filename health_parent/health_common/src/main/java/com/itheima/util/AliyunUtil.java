@@ -12,10 +12,10 @@ public class AliyunUtil {
     // Endpoint以杭州为例，其它Region请按实际情况填写。
     // 阿里云主账号AccessKey拥有所有API的访问权限，风险很高。强烈建议您创建并使用RAM账号进行API访问或日常运维，请登录 https://ram.console.aliyun.com 创建RAM账号。
     public static String endpoint = "oss-cn-hangzhou.aliyuncs.com";
-    public static String accessKeyId = "LTAI4G4QY5MvWyNN7yHogEtN";
-    public static String accessKeySecret = "2ywtQS3cpFBRI6vMy8m7y0cmKsZRoJ";
-    public static String bucketName = "healthprojectzxj";
-    public static String objectName = "picture/";
+    public static String accessKeyId = "your ak";
+    public static String accessKeySecret = "your sk";
+    public static String bucketName = "your bucketname";
+    public static String objectName = "picture/ [your path]";
 
     public static void upload2AliYun(byte[] bytes, String fileName){
         // 创建OSSClient实例。
