@@ -179,7 +179,8 @@
                 <el-dialog title="编辑检查组" :visible.sync="dialogFormVisible4Edit">
                     <el-tabs v-model="activeName" type="card">
                         <el-tab-pane label="基本信息" name="first">
-                            <el-form ref="dataEditForm" :model="formData" :rules="rules" label-position="right" label-width="100px">
+                            <el-form ref="dataEditForm" :model="formData" :rules="rules" label-position="right"
+                                     label-width="100px">
                                 <el-row>
                                     <el-col :span="12">
                                         <el-form-item label="编码" prop="code">
@@ -285,6 +286,7 @@
         created() {
             this.findPage();
         },
+
         methods: {
             //编辑
             handleEdit() {

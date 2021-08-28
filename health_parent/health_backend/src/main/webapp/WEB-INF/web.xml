@@ -49,6 +49,7 @@
         <url-pattern>*.do</url-pattern>
         <!--任何以.do结尾的访问资源都进入springmvc框架-->
     </servlet-mapping>
+
     <welcome-file-list>
         <welcome-file>main1.html</welcome-file>
     </welcome-file-list>

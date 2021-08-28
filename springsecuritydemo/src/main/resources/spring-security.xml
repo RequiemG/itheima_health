@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                         http://www.springframework.org/schema/beans/spring-beans.xsd
+                         http://www.springframework.org/schema/security
+                         http://www.springframework.org/schema/security/spring-security.xsd
+                         http://www.springframework.org/schema/context
+                         http://www.springframework.org/schema/context/spring-context.xsd
+                         http://www.springframework.org/schema/mvc
+                         http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+
+
+
+    <security:http security="none" pattern="/pages/login.html"/>
+    <security:http security="none" pattern="/hello"/>
+<!--    <security:http security="none" pattern="/pages/**"/>-->
+
+    <security:http auto-config="true" use-expressions="true">
+        <!-- intercept-url:定义一个拦截规则 pattern:对哪些url进行权限控制 access:在请求对应的URL时需要什么权限,默认配置时它应该是一个以逗号分隔的角色列表,
+            请求的用户只需拥有其中的一个角色就能成功访问对应的URL -->
+
+        <!--只要认证就能通过-->
+        <security:intercept-url pattern="/pages/a.html" access="isAuthenticated()"/>
+        <security:intercept-url pattern="/index.html" access="isAuthenticated()" />
+        <!--拥有add权限就能访问b.html页面-->
+        <security:intercept-url pattern="/pages/b.html" access="hasAuthority('add')"/>
+        <!--拥有ROLE——ADMIN角色就能访问c.html页面-->
+        <security:intercept-url pattern="/pages/c.html" access="hasRole('ROLE_ADMIN')"/>
+
+<!--        <security:intercept-url pattern="/**" access="hasRole('ROLE_ADMIN')"/>-->
+
+        <!--自定义登入页面，登入由框架来负责，所以要配置登陆表单等信息-->
+        <security:form-login
+            login-page="/pages/login.html"
+            username-parameter="username"
+            password-parameter="password"
+            login-processing-url="/login.do"
+            default-target-url="/index.html"
+            authentication-failure-url="/pages/login.html"
+        />
+        <!--如果自定义登入页面，需要指定过滤器-->
+        <security:csrf disabled="true"/>
+
+        <!--
+        logout：退出登陆
+        logout-url：退出登陆操作对应的请求路径
+        logout-success-url：退出登入后的跳转页面
+        -->
+        <security:logout logout-url="/logout.do" logout-success-url="/pages/login.html" invalidate-session="true"/>
+
+    </security:http>
+
+
+
+
+    <!-- authentication-manager:认证管理器,用于处理认证操作 -->
+    <security:authentication-manager>
+        <!-- authentication-provider:认证提供者,执行具体的认证逻辑 -->
+        <security:authentication-provider user-service-ref="userService2">
+            <!--指定密码进行加密的对象-->
+            <security:password-encoder ref="passwordEncoder"/>
+        </security:authentication-provider>
+    </security:authentication-manager>
+
+<!--    <bean id="userService" class="cn.zxj.service.SpringSecurityUserService"/>-->
+    <bean id="userService2" class="cn.zxj.service.SpringSecurityUserService2"/>
+
+    <!--配置密码加密对象-->
+    <bean id="passwordEncoder"
+          class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"
+    />
+
+
+    <!--开启spring注解使用-->
+    <context:annotation-config/>
+    <mvc:annotation-driven/>
+    <context:component-scan base-package="cn.zxj.controller"/>
+    <security:global-method-security pre-post-annotations="enabled" proxy-target-class="true" />
+</beans>
